@@ -1,6 +1,7 @@
 import time
 from turtle import Turtle
 
+
 class Enemy:
     def __init__(self):
         self.enemy = None
@@ -26,7 +27,7 @@ class Enemy:
             if i.xcor() > 350:
                 self.x = -400
                 self.y += -50
-    
+
     def create_enemy_bullet(self):
         for i in self.enemies[:16:2]:
             self.enemy_bullet = Turtle()
@@ -39,7 +40,7 @@ class Enemy:
 
     def move_enemy_bullet(self):
         for i in self.enemy_bullet_list:
-            i.goto(i.xcor(),i.ycor()-40)
+            i.goto(i.xcor(), i.ycor() - 40)
 
     def create_enemy_bullet_again(self):
         len_enemies = len(self.enemies)
@@ -48,23 +49,21 @@ class Enemy:
         # print(len_enemies)
         # print(len_enemy_bullets)
         if len_enemies > len_enemy_bullets:
-            for i in range(0,len(self.enemy_bullet_list)):
-                if self.enemy_bullet_list[i].ycor() <-600:
-                        self.enemy_bullet_list[i].goto(self.enemies[i].xcor(), self.enemies[i].ycor())
+            for i in range(0, len(self.enemy_bullet_list)):
+                if self.enemy_bullet_list[i].ycor() < -600:
+                    self.enemy_bullet_list[i].goto(self.enemies[i].xcor(), self.enemies[i].ycor())
         else:
-            for i in range(0,len(self.enemies)):
-                if self.enemy_bullet_list[i].ycor() <-600:
-                        self.enemy_bullet_list[i].goto(self.enemies[i].xcor(), self.enemies[i].ycor())
+            for i in range(0, len(self.enemies)):
+                if self.enemy_bullet_list[i].ycor() < -600:
+                    self.enemy_bullet_list[i].goto(self.enemies[i].xcor(), self.enemies[i].ycor())
             # print("limit exceed")
-
-
 
     def enemy_move(self):
         for i in self.enemies:
-            i.goto(i.xcor()+self.move,i.ycor())
+            i.goto(i.xcor() + self.move, i.ycor())
             if i.xcor() > 590:
-                i.goto(590,i.ycor())
-                self.move=-10
+                i.goto(590, i.ycor())
+                self.move = -10
             if i.xcor() < -590:
                 i.goto(-590, i.ycor())
                 self.move = 10

@@ -47,6 +47,8 @@ def check_player_bullet_collide_with_enemy():
                 score.reset_score()
 
                 enemy.enemies.remove(i)
+                player_and_bullet.bullet_list.remove(j)
+
 
     if len(enemy.enemies) == 0:
         print("Game Over")
@@ -56,13 +58,10 @@ def check_player_bullet_collide_with_enemy():
 
 
 def check_enemy_bullet_collide_with_block_and_player():
-    flag = False
     x_pos =0
     for i in enemy.enemy_bullet_list:
         for j in block.blocks:
             if i.distance(j) < 40:
-                # i.reset()
-                # i.hideturtle()
                 i.penup()
                 i.goto(i.xcor(),-600)
 
@@ -71,21 +70,16 @@ def check_enemy_bullet_collide_with_block_and_player():
                 j.penup()
                 j.goto(1000, 1000)
 
-                # enemy.enemy_bullet_list.remove(i)
                 block.blocks.remove(j)
-
-                flag = True
                 x_pos -=20
 
-        if i.distance(player_and_bullet.player) < 20:
+        if i.distance(player_and_bullet.player) < 40:
             health.reset_health()
+            i.goto(i.xcor(), -600)
             if health.HEALTH == 0:
                 print("Game Over")
                 exit()
 
-    # if flag == True:
-    #     # pass
-    #     enemy.create_enemy_bullet_one(x_pos)
 
 while is_running:
     time.sleep(0.3)
